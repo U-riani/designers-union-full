@@ -70,7 +70,7 @@ const deletePartner = async (req, res) => {
 
     // Delete associated image(s) from Firebase
     if (singlePartner.image && singlePartner.image.length > 0) {
-      await deleteFromHostGatorse(singlePartner.image[0]);
+      await deleteFromHostGator(singlePartner.image[0]);
     }
 
     await Partners.findByIdAndDelete(id);
@@ -107,7 +107,7 @@ const updatePartner = async (req, res) => {
     if (req.fileUrls && req.fileUrls.length > 0) {
       // Delete old image(s)
       if (singlePartnerInfo.image && singlePartnerInfo.image.length > 0) {
-        await deleteFromHostGatorse(singlePartnerInfo.image[0]);
+        await deleteFromHostGator(singlePartnerInfo.image[0]);
       }
 
       // Set new images

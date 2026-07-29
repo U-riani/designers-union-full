@@ -261,7 +261,7 @@ const updateProjectContentImage = async (req, res) => {
         projectContent.media.images.push({ url: req.fileUrls[0] });
       }
       if (type === "update") {
-        await deleteFromHostGatorse(
+        await deleteFromHostGator(
           projectContent.media.images[localIndex].url,
         );
         projectContent.media.images[localIndex].url = req.fileUrls[0];
@@ -317,7 +317,7 @@ const deleteProjectContentImage = async (req, res) => {
 
     const image = projectContent.media.images[localIndex];
     // //Delete image rom firebase
-    await deleteFromHostGatorse(image.url);
+    await deleteFromHostGator(image.url);
     // remove array
     projectContent.media.images.splice(localIndex, 1);
     // await ProjectContent.images[localIndex].pull({_id: ProjectContent.images[localIndex]._id})
@@ -375,7 +375,7 @@ const deleteProjectContent = async (req, res) => {
       projectContent.media.images.length > 0
     ) {
       for (const image of projectContent.media.images) {
-        await deleteFromHostGatorse(image.url);
+        await deleteFromHostGator(image.url);
       }
     }
 

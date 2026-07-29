@@ -307,7 +307,7 @@ const deleteDesigner = async (req, res) => {
     // Delete associated image(s) from Firebase
     if (singleDesigner.images && singleDesigner.images.length > 0) {
       singleDesigner.images.forEach(async (item, i) => {
-        await deleteFromHostGatorse(item);
+        await deleteFromHostGator(item);
       });
     }
 
@@ -351,7 +351,7 @@ const deleteDesigner = async (req, res) => {
 //     if (req.fileUrls?.profileImage) {
 //       // Delete old profile image
 //       const oldProfile = singleDesignerInfo.images?.[0];
-//       if (oldProfile) await deleteFromHostGatorse(oldProfile);
+//       if (oldProfile) await deleteFromHostGator(oldProfile);
 //       updatedData.images = updatedData.images || [];
 //       updatedData.images[0] = req.fileUrls.profileImage;
 //     }
@@ -359,7 +359,7 @@ const deleteDesigner = async (req, res) => {
 //     // Handle new projectImage
 //     if (req.fileUrls?.projectImage) {
 //       const oldProject = singleDesignerInfo.images?.[1];
-//       if (oldProject) await deleteFromHostGatorse(oldProject);
+//       if (oldProject) await deleteFromHostGator(oldProject);
 //       updatedData.images = updatedData.images || [];
 //       updatedData.images[1] = req.fileUrls.projectImage;
 //     }
@@ -404,13 +404,13 @@ const updateDesigner = async (req, res) => {
 
     if (req.fileUrls?.profileImage) {
       const oldProfile = singleDesignerInfo.profilePhoto?.[0];
-      if (oldProfile) await deleteFromHostGatorse(oldProfile);
+      if (oldProfile) await deleteFromHostGator(oldProfile);
       updatedData.profilePhoto = [req.fileUrls.profileImage];
     }
 
     if (req.fileUrls?.projectImage) {
       const oldProject = singleDesignerInfo.projectPhoto?.[0];
-      if (oldProject) await deleteFromHostGatorse(oldProject);
+      if (oldProject) await deleteFromHostGator(oldProject);
       updatedData.projectPhoto = [req.fileUrls.projectImage];
     }
 

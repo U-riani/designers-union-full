@@ -58,7 +58,7 @@ const updateAboutUs = async (req, res) => {
       console.log("--++++--");
       // Delete old image(s)
       if (aboutUsData.image && aboutUsData.image.length > 0) {
-        await deleteFromHostGatorse(aboutUsData.image[0]);
+        await deleteFromHostGator(aboutUsData.image[0]);
       }
 
       // Set new images
@@ -129,7 +129,7 @@ const updateAboutUsMainPage = async (req, res) => {
       console.log("--++++--");
       // Delete old image(s)
       if (aboutUsData.image && aboutUsData.image.length > 0) {
-        await deleteFromHostGatorse(aboutUsData.image[0]);
+        await deleteFromHostGator(aboutUsData.image[0]);
       }
 
       // Set new images

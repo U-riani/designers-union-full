@@ -344,7 +344,7 @@ const createProject = async (req, res) => {
 //       const heroData = await HeroData.findByIdAndDelete(heroDataId);
 //       // // Delete associated image(s) from Firebase
 //       if (heroData && heroData.image && heroData.image.url) {
-//         await deleteFromHostGatorse(heroData.image.url);
+//         await deleteFromHostGator(heroData.image.url);
 //       }
 //     }
 
@@ -361,7 +361,7 @@ const createProject = async (req, res) => {
 //         projectContentDoc.media.images.length > 0
 //       ) {
 //         for (const image of projectContentDoc.media.images) {
-//           await deleteFromHostGatorse(image.url);
+//           await deleteFromHostGator(image.url);
 //         }
 //       }
 //       await ProjectContent.findByIdAndDelete(projectContentId);
@@ -397,7 +397,7 @@ const deleteProject = async (req, res) => {
       for (const heroDataId of singleProject.heroData) {
         const heroData = await HeroData.findByIdAndDelete(heroDataId);
         if (heroData && heroData.image && heroData.image.url) {
-          await deleteFromHostGatorse(heroData.image.url);
+          await deleteFromHostGator(heroData.image.url);
         }
       }
     }
@@ -419,7 +419,7 @@ const deleteProject = async (req, res) => {
             projectContentDoc.media.images.length > 0
           ) {
             for (const image of projectContentDoc.media.images) {
-              await deleteFromHostGatorse(image.url);
+              await deleteFromHostGator(image.url);
             }
           }
 
@@ -464,7 +464,7 @@ const updateProject = async (req, res) => {
     // if (req.fileUrls && req.fileUrls.length > 0) {
     //   // Delete old image(s)
     //   if (singleProjectInfo.image && singleProjectInfo.image.length > 0) {
-    //     await deleteFromHostGatorse(singleProjectInfo.image[0]);
+    //     await deleteFromHostGator(singleProjectInfo.image[0]);
     //   }
 
     //   // Set new images

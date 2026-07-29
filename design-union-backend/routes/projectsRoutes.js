@@ -13,7 +13,7 @@ const { handleImageUpload } = require("../middleware/imageMiddleware");
 // const {
 //   handleHeroImageUpload,
 //   handleImageUpdate,
-//   deleteFromHostGatorse,
+//   deleteFromHostGator,
 // } = require("../middleware/projectsImageMiddleware");
 
 const dbMiddleware = require("../middleware/dbMiddleware");

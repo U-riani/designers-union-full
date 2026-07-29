@@ -16,7 +16,7 @@ const deleteProjectDescription = async (req, res) => {
 
     // Delete associated image(s) from Firebase
     if (singleProject.image && singleProject.image.length > 0) {
-      await deleteFromHostGatorse(singleProject.image[0]);
+      await deleteFromHostGator(singleProject.image[0]);
     }
 
     await Projects.findByIdAndDelete(id);
@@ -103,7 +103,7 @@ const updateProjectHeroData = async (req, res) => {
     const oldHeroData = await HeroData.findById(heroDataId);
     // If new image URLs are present, delete the old image using the old URL
     if (req.fileUrls && req.fileUrls.length > 0) {
-      await deleteFromHostGatorse(oldHeroData.image.url); // Delete the old image
+      await deleteFromHostGator(oldHeroData.image.url); // Delete the old image
       updatedHeroData.image.url = req.fileUrls[0]; // Set the new image URL
     }
 
@@ -184,7 +184,7 @@ const deleteProjectsHerodata = async (req, res) => {
     // // Delete associated image(s) from Firebase
     const heroData = await HeroData.findById(heroDataId);
     if (heroData && heroData.image && heroData.image.url) {
-      await deleteFromHostGatorse(heroData.image.url);
+      await deleteFromHostGator(heroData.image.url);
     } else {
       res.json({ error: "error in deleting images" });
     }

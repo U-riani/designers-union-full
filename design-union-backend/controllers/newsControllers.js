@@ -70,7 +70,7 @@ const updateSingleNews = async (req, res) => {
     if (req.fileUrls && req.fileUrls.length > 0) {
       // delete all old images
       for (const imageUrl of singleNewsInfo.images) {
-        await deleteFromHostGatorse(imageUrl);
+        await deleteFromHostGator(imageUrl);
       }
       updatedData.images = req.fileUrls;
     }
@@ -98,7 +98,7 @@ const deleteNews = async (req, res) => {
 
     // Delete images from Firebase
     for (const imageUrl of singleNews.images) {
-      await deleteFromHostGatorse(imageUrl);
+      await deleteFromHostGator(imageUrl);
     }
 
     // Delete the news article

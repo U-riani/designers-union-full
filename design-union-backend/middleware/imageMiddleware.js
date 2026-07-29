@@ -38,7 +38,7 @@
 // };
 
 // // Delete an image from Firebase by URL
-// const deleteFromHostGatorse = async (imageUrl) => {
+// const deleteFromHostGator = async (imageUrl) => {
 //   if (!imageUrl) return;
 
 //   const fileName = imageUrl.split("/").pop();
@@ -141,7 +141,7 @@
 
 // module.exports = {
 //   handleImageUpload,
-//   deleteFromHostGatorse, // Export the delete function
+//   deleteFromHostGator, // Export the delete function
 // };
 
 // backend/middleware/imageMiddleware.js
