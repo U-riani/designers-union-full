@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const projectContentApiSlice = createApi({
   reducerPath: "projectsContentApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://design-union-server.onrender.com/api/",
+    baseUrl: process.env.REACT_APP_BASE_URL,
     prepareHeaders: (headers) => {
       headers.set("Accept", "application/json");
       return headers;
@@ -92,7 +92,7 @@ export const projectContentApiSlice = createApi({
 
 export const {
   useGetSingleProjectContentQuery,
-  
+
   useCreateProjectsContentTitleMutation,
   useUpdateProjectsContentTitleMutation,
   useCreateProjectsContentVideoMutation,
@@ -100,5 +100,4 @@ export const {
   useUpdateProjectsContentImageMutation,
   useDeleteSingleProjectContentImageMutation,
   useDeleteSingleProjectContentMutation,
-  
 } = projectContentApiSlice;

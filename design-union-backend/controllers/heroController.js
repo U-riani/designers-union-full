@@ -62,7 +62,7 @@ const deleteHero = async (req, res) => {
 
     // Delete associated image(s) from Firebase
     if (singleHero.image && singleHero.image.length > 0) {
-      await deleteFromHostGatorse(singleHero.image[0]);
+      await deleteFromHostGator(singleHero.image[0]);
     }
 
     await Hero.findByIdAndDelete(id);
@@ -94,7 +94,7 @@ const updateHero = async (req, res) => {
     if (req.fileUrls && req.fileUrls.length > 0) {
       // Delete old image(s)
       if (singleHeroInfo.image && singleHeroInfo.image.length > 0) {
-        await deleteFromHostGatorse(singleHeroInfo.image[0]);
+        await deleteFromHostGator(singleHeroInfo.image[0]);
       }
 
       // Set new images

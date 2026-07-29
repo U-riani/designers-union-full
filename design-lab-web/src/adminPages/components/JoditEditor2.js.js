@@ -6,7 +6,7 @@ import { useCreateBlogsMutation } from "../../data/blogSlice";
 // Lazy load the JoditEditor
 const JoditEditor = React.lazy(() => import("jodit-react"));
 
-const JoditEditorComponent = ({parentComponent}) => {
+const JoditEditorComponent = ({ parentComponent }) => {
   const [title, setTitle] = useState({ en: "", ge: "" });
   const [imageFiles, setImageFiles] = useState([]);
   const editorRefEn = useRef(null);
@@ -22,39 +22,41 @@ const JoditEditorComponent = ({parentComponent}) => {
       [lang]: e.target.value,
     }));
   };
- 
+
   const handleSubmit = async () => {
     const editorContentEn = editorRefEn.current?.value || "";
     const editorContentGe = editorRefGe.current?.value || "";
-  
+
     if (!editorContentEn || !editorContentGe) {
       alert("Please provide content in both English and Georgian.");
       return;
     }
-  
+
     const formData = new FormData();
     formData.append("title[en]", title.en);
     formData.append("title[ge]", title.ge);
     formData.append("text[en]", editorContentEn);
     formData.append("text[ge]", editorContentGe);
-  
+
     imageFiles.forEach((file) => {
       formData.append("images", file); // Append images for upload
     });
-  
-    try {
 
-      const response = parentComponent === 'news' ? await createNews(formData).unwrap() : await createBlog(formData).unwrap();
+    try {
+      const response =
+        parentComponent === "news"
+          ? await createNews(formData).unwrap()
+          : await createBlog(formData).unwrap();
       alert(`${parentComponent} saved successfully!`);
       handleClearContent();
     } catch (error) {
       console.error("Error:", error);
       alert(
-        "Failed to save content: " + (error.data?.message || error.message)
+        "Failed to save content: " + (error.data?.message || error.message),
       );
     }
   };
-  
+
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
     setImageFiles((prev) => {
@@ -63,7 +65,6 @@ const JoditEditorComponent = ({parentComponent}) => {
       return updatedFiles; // Return updated state
     });
   };
-  
 
   const handleClearContent = () => {
     setTitle({ en: "", ge: "" });
@@ -76,7 +77,7 @@ const JoditEditorComponent = ({parentComponent}) => {
   const config = {
     uploader: {
       insertImageAsBase64URI: true,
-      url: "https://design-union-server.onrender.com/api/upload",
+      url: `${process.env.REACT_APP_BASE_URL}upload`,
       format: "json",
       method: "POST",
       process: (resp) => ({
@@ -165,7 +166,7 @@ const JoditEditorComponent = ({parentComponent}) => {
 
       <div className="mt-3">
         <button onClick={handleSubmit} className="btn btn-primary">
-          {parentComponent === 'news' ? "Save News Article" : "Save Blog"}
+          {parentComponent === "news" ? "Save News Article" : "Save Blog"}
         </button>
         <button onClick={handleClearContent} className="btn btn-secondary ms-2">
           Clear Content

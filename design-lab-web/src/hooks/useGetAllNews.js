@@ -9,9 +9,9 @@ const useGetAllNews = () => {
     const fetchNews = async () => {
       setLoading(true); // Set loading to true when fetching starts
       try {
-        const response = await fetch("https://design-union-server.onrender.com/api/news");
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}news`);
         if (!response.ok) throw new Error("Failed to fetch news");
-        
+
         const json = await response.json();
         setAllNews(json?.reverse());
       } catch (error) {

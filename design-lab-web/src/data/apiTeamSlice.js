@@ -4,11 +4,10 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiTeamSlice = createApi({
   reducerPath: "teamApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://design-union-server.onrender.com/api/",
+    baseUrl: process.env.REACT_APP_BASE_URL,
   }),
   tagTypes: ["Team"],
   endpoints: (builder) => ({
-
     // 🔹 GET ALL TEAM MEMBERS
     getTeamMembers: builder.query({
       query: () => "team",

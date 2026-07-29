@@ -35,7 +35,7 @@ const AdminAddAboutUs = () => {
   const config = {
     uploader: {
       insertImageAsBase64URI: true,
-      url: "https://design-union-server.onrender.com/api/upload",
+      url: `${process.env.REACT_APP_BASE_URL}upload`,
       format: "json",
       method: "POST",
       process: (resp) => ({

@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const projectsApiSlice = createApi({
   reducerPath: "projectsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://design-union-server.onrender.com/api/",
+    baseUrl: process.env.REACT_APP_BASE_URL,
     prepareHeaders: (headers) => {
       headers.set("Accept", "application/json");
       return headers;
@@ -11,12 +11,12 @@ export const projectsApiSlice = createApi({
   }),
   tagTypes: ["Projects"],
   endpoints: (builder) => ({
-    getAllProjects: builder.query({ 
+    getAllProjects: builder.query({
       query: () => "projects",
       transformResponse: (response) => response.reverse(),
       providesTags: ["Projects"],
     }),
-    getLastThreeProjects: builder.query({ 
+    getLastThreeProjects: builder.query({
       query: () => "projects/lastThreeProjects",
       // transformResponse: (response) => response.reverse(),
       providesTags: ["Projects"],

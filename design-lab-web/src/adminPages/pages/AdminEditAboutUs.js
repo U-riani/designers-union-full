@@ -18,7 +18,7 @@ const AdminEditAboutUs = () => {
   const [editorContentEn, setEditorContentEn] = useState("");
   const [imageFile, setImageFile] = useState(null);
   const [oldImageSrc, setOldImageSrc] = useState("");
-  const [startLoading, setStartLoading] = useState(false)
+  const [startLoading, setStartLoading] = useState(false);
   const [id, setId] = useState(null);
 
   const fileInputRef = useRef(null);
@@ -26,8 +26,8 @@ const AdminEditAboutUs = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    refetch()
-  }, [refetch])
+    refetch();
+  }, [refetch]);
 
   useEffect(() => {
     if (data) {
@@ -44,7 +44,7 @@ const AdminEditAboutUs = () => {
   };
 
   const handleSubmit = async () => {
-    setStartLoading(true)
+    setStartLoading(true);
     try {
       //   const formData = new FormData();
       const enText = editorRefEn?.current.value;
@@ -54,29 +54,29 @@ const AdminEditAboutUs = () => {
       //   }
       //   formData.append("text[en]", enText);
       //   formData.append("text[ge]", geText);
-    //   console.log(imageFile);
+      //   console.log(imageFile);
       const response = await updateAboutUs({
         id,
         enText,
         geText,
         imageFile,
       }).unwrap();
-      if(response._id) {
-        alert('Success !')
-        refetch()
-        setStartLoading(false)
+      if (response._id) {
+        alert("Success !");
+        refetch();
+        setStartLoading(false);
       }
     } catch (error) {
-      alert(error)
-      setStartLoading(false)
+      alert(error);
+      setStartLoading(false);
     }
   };
 
-//   console.log(data);
+  //   console.log(data);
   const config = {
     uploader: {
       insertImageAsBase64URI: true,
-      url: "https://design-union-server.onrender.com/api/upload",
+      url: `${process.env.REACT_APP_BASE_URL}upload`,
       format: "json",
       method: "PATCH",
       process: (resp) => ({
@@ -142,8 +142,14 @@ const AdminEditAboutUs = () => {
         </Suspense>
       </div>
       <Col sm={3}>
-        {startLoading &&<p>Loading ...</p>}
-        <button disabled={startLoading} onClick={handleSubmit} className="w-100 ms-4 my-3 bg-success">Save</button>
+        {startLoading && <p>Loading ...</p>}
+        <button
+          disabled={startLoading}
+          onClick={handleSubmit}
+          className="w-100 ms-4 my-3 bg-success"
+        >
+          Save
+        </button>
       </Col>
     </Container>
   );

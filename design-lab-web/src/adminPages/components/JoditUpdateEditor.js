@@ -47,7 +47,7 @@ const JoditUpdateEditor = ({ data, parentComponent }) => {
           text: { ge: editorContentGe, en: editorContentEn },
           images: newImages,
         }).unwrap();
-      } else if(parentComponent === "news") {
+      } else if (parentComponent === "news") {
         const response = await updateNews({
           id: data._id,
           title: { ge: titleGe, en: titleEn },
@@ -75,7 +75,7 @@ const JoditUpdateEditor = ({ data, parentComponent }) => {
   const config = {
     uploader: {
       insertImageAsBase64URI: true,
-      url: "https://design-union-server.onrender.com/api/upload",
+      url: `${process.env.REACT_APP_BASE_URL}upload`,
       format: "json",
       method: "POST",
       process: (resp) => ({ files: [resp.url] }),
@@ -184,7 +184,7 @@ const JoditUpdateEditor = ({ data, parentComponent }) => {
 
       <div className="mt-3">
         <button onClick={handleSubmit} className="btn btn-primary">
-          {parentComponent === 'blog' ? 'Update Blog' : 'Update News Article'}
+          {parentComponent === "blog" ? "Update Blog" : "Update News Article"}
         </button>
         <button onClick={handleClearContent} className="btn btn-secondary ms-2">
           Clear Content

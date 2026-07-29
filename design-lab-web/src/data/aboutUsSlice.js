@@ -5,7 +5,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiAboutUsSlice = createApi({
   reducerPath: "aboutUsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://design-union-server.onrender.com/api/",
+    baseUrl: process.env.REACT_APP_BASE_URL,
     prepareHeaders: (headers) => {
       // You can add headers here if needed
       headers.set("Accept", "application/json");
@@ -89,5 +89,5 @@ export const {
   useUpdateAboutUsMutation,
   useGetAboutUsMainPageQuery,
   useCreateAboutUsMainPageMutation,
-  useUpdateAboutUsMainPageMutation
+  useUpdateAboutUsMainPageMutation,
 } = apiAboutUsSlice;

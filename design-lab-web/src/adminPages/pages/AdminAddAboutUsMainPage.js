@@ -1,6 +1,10 @@
 import React, { useState, useRef, Suspense } from "react";
 import { useTranslation } from "react-i18next";
-import { useCreateAboutUsMainPageMutation, useCreateAboutUsMutation, useGetAboutUsMainPageQuery } from "../../data/aboutUsSlice";
+import {
+  useCreateAboutUsMainPageMutation,
+  useCreateAboutUsMutation,
+  useGetAboutUsMainPageQuery,
+} from "../../data/aboutUsSlice";
 
 // Lazy load the JoditEditor
 const JoditEditor = React.lazy(() => import("jodit-react"));
@@ -10,7 +14,7 @@ const AdminAddAboutUsMainPage = () => {
   const editorRefGe = useRef(null);
   const fileInputRef = useRef(null);
   const { t } = useTranslation();
-  const [createAboutUsMainPage]= useCreateAboutUsMainPageMutation();
+  const [createAboutUsMainPage] = useCreateAboutUsMainPageMutation();
   const [imageFile, setImageFile] = useState(null);
 
   const handleImageChange = (e) => {
@@ -35,7 +39,7 @@ const AdminAddAboutUsMainPage = () => {
   const config = {
     uploader: {
       insertImageAsBase64URI: true,
-      url: "https://design-union-server.onrender.com/api/upload",
+      url: `${process.env.REACT_APP_BASE_URL}upload`,
       format: "json",
       method: "POST",
       process: (resp) => ({
